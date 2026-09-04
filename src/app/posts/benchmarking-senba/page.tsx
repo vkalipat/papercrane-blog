@@ -190,8 +190,9 @@ export default function SenbaPost() {
           </p>
 
           <p className={styles.conclusion}>
-            Senba is still a validation-stage model. Next, we&apos;ll test it
-            across more lags and compare it with other runnable dynamics models.
+            Senba suggests that today&apos;s dynamics models still have room to
+            improve. This low-budget fine-tune produced a small, consistent gain
+            that future training campaigns can try to extend.
           </p>
 
           <section
