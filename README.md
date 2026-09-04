@@ -6,7 +6,7 @@ The papercrane writing surface. One post so far.
 
 | Post | Published |
 | --- | --- |
-| [Senba](src/app/posts/benchmarking-senba/page.tsx) — how Senba was fine-tuned from MarS-FM, what the training cost, and how it performed on 28 mdCATH validation proteins | 2026-08-25 |
+| [Senba](src/app/posts/benchmarking-senba/page.tsx) — how we fine-tuned Senba from MarS-FM, what it cost, and how it performed on 28 mdCATH validation proteins | 2026-08-25 |
 
 ## Run it
 
@@ -46,7 +46,7 @@ IBM Plex Mono via `next/font`.
 ## Related
 
 - The Senba model release, with weights, receipts and protocols:
-  <https://huggingface.co/vkali08/senba>
+  <https://huggingface.co/pikachuandme1/senba>
 - MarS-FM, the source model Senba adapts:
   <https://github.com/valence-labs/mars-fm>
 - mdCATH, the dataset the adaptation pairs come from:

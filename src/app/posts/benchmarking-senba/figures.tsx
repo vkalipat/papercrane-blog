@@ -71,7 +71,7 @@ export function ProteinImprovementFigure() {
   return (
     <FigureShell
       id="protein-improvement"
-      caption="Endpoint RMSD improvement by protein. The mean was 0.0326 Å, with a 95% confidence interval from 0.0253 to 0.0401 Å."
+      caption="Endpoint RMSD improvement by protein."
       scrollLabel="Per-protein endpoint RMSD improvement. Scroll horizontally on narrow screens."
     >
       <svg
@@ -205,7 +205,7 @@ export function SeedRepeatabilityFigure() {
   return (
     <FigureShell
       id="seed-repeatability"
-      caption="The same ten-epoch run repeated across three training seeds. Lines show 95% confidence intervals."
+      caption="Ten-epoch training across three seeds, with 95% confidence intervals."
       scrollLabel="Seed repeatability. Scroll horizontally on narrow screens."
     >
       <svg
