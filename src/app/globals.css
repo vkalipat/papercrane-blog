@@ -1,0 +1,183 @@
+@import "tailwindcss";
+
+/*
+  Paper Crane design tokens.
+  Palette: warm paper cream, ink black, forest-green accent.
+  Light-mode only — dark mode fights the paper concept.
+*/
+@theme {
+  --color-paper: #f7f3eb;
+  --color-paper-shade: #efe9dc;
+  --color-paper-deep: #e6dfce;
+  --color-card: #fbf8f1;
+  --color-ink: #111110;
+  --color-ink-soft: #3a3833;
+  --color-ink-mute: #5f5a51;
+  --color-accent: #1f4438;
+  --color-accent-soft: rgb(31 68 56 / 0.14);
+  --color-accent-line: rgb(31 68 56 / 0.32);
+  --color-amber: #7a5530;
+  --color-amber-soft: rgb(122 85 48 / 0.14);
+  --color-focus-ring: var(--color-accent);
+  --color-crease: rgb(17 17 16 / 0.09);
+  --color-rule: rgb(17 17 16 / 0.18);
+  --color-rule-soft: rgb(17 17 16 / 0.08);
+
+  --font-display: var(--font-serif), Georgia, "Iowan Old Style", serif;
+  --font-technical: var(--font-mono), ui-monospace, "SF Mono", Menlo, Consolas,
+    monospace;
+
+  --ease-out-paper: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-paper: cubic-bezier(0.5, 0, 0.75, 0);
+  --duration-fast: 85ms;
+  --duration-med: 160ms;
+  --duration-slow: 440ms;
+
+  /*
+    Editorial display ramp (Lusion §11 alignment).
+    Body text continues to use Tailwind's stock text-xs / text-sm /
+    text-base / text-lg / etc. — these `--text-display-*` tokens are
+    namespaced so we don't override the body utilities every existing
+    section depends on. Use as `text-display-md` etc.; line-height and
+    letter-spacing come bundled via the `--*--line-height` and
+    `--*--letter-spacing` shorthand Tailwind 4 honors automatically.
+  */
+  --text-display-xs: 1.5rem;     /* 24px — minor headlines / kickers */
+  --text-display-xs--line-height: 1.05;
+  --text-display-xs--letter-spacing: -0.015em;
+
+  --text-display-sm: 2.375rem;   /* 38px — section headings on small screens */
+  --text-display-sm--line-height: 1.0;
+  --text-display-sm--letter-spacing: -0.018em;
+
+  --text-display-md: 4.5rem;     /* 72px — H1 on tablet, H2 on desktop */
+  --text-display-md--line-height: 0.96;
+  --text-display-md--letter-spacing: -0.02em;
+
+  --text-display-lg: 6rem;       /* 96px — H1 on desktop */
+  --text-display-lg--line-height: 0.95;
+  --text-display-lg--letter-spacing: -0.022em;
+
+  --text-display-xl: 7.5rem;     /* 120px — hero H1 ceiling */
+  --text-display-xl--line-height: 0.92;
+  --text-display-xl--letter-spacing: -0.025em;
+}
+
+:root {
+  color-scheme: light only;
+  --pointer-x: 50%;
+  --pointer-y: 50%;
+}
+
+html {
+  background: var(--color-paper);
+  color: var(--color-ink);
+  -webkit-text-size-adjust: 100%;
+  scroll-padding-top: 6rem;
+}
+
+body {
+  font-family: var(--font-display);
+  font-feature-settings: "kern";
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  min-height: 100dvh;
+  overflow-x: clip;
+  background: var(--color-paper);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-focus-ring);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+::selection {
+  background: var(--color-accent-soft);
+  color: var(--color-ink);
+}
+
+.paper-surface {
+  isolation: isolate;
+  background:
+    radial-gradient(circle at 18% 12%, rgb(255 255 255 / 0.72), transparent 28rem),
+    radial-gradient(circle at 82% 4%, rgb(239 233 220 / 0.82), transparent 31rem),
+    linear-gradient(122deg, rgb(255 255 255 / 0.18), transparent 36%),
+    var(--color-paper);
+}
+
+.paper-surface::before,
+.paper-surface::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+}
+
+.paper-surface::before {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180' viewBox='0 0 180 180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.72' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='.42'/%3E%3C/svg%3E");
+  background-size: 180px 180px;
+  mix-blend-mode: multiply;
+  opacity: 0.18;
+}
+
+.paper-surface::after {
+  background:
+    linear-gradient(100deg, transparent 0 18%, rgb(17 17 16 / 0.028) 18.2%, transparent 18.55% 100%),
+    linear-gradient(78deg, transparent 0 67%, rgb(255 255 255 / 0.32) 67.2%, transparent 67.55% 100%),
+    radial-gradient(ellipse at 50% 115%, rgb(17 17 16 / 0.075), transparent 54%);
+  opacity: 0.72;
+}
+
+.paper-rise {
+  animation: paper-rise var(--duration-slow) var(--ease-out-paper) both;
+}
+
+.paper-rise-delay-1 {
+  animation-delay: 90ms;
+}
+
+.paper-rise-delay-2 {
+  animation-delay: 180ms;
+}
+
+/*
+  Tabular numerals — for ledger-style price columns and any table where
+  digit alignment matters more than aesthetic kerning. Lusion §11 / Taste §11.
+  Tailwind ships its own `tabular-nums` (`font-variant-numeric`); this rule
+  also opts in to `lnum` so we stay on lining figures inside Instrument Serif.
+*/
+.tabular-nums {
+  font-feature-settings: "tnum", "lnum";
+  font-variant-numeric: tabular-nums lining-nums;
+}
+
+@keyframes paper-rise {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 18px, 0) rotate(-0.35deg);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) rotate(0deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .paper-rise {
+    animation: none !important;
+    opacity: 1;
+    transform: none;
+  }
+
+  .paper-rise-delay-1,
+  .paper-rise-delay-2 {
+    animation-delay: 0ms;
+  }
+
+  .paper-motion {
+    transition-duration: 1ms !important;
+  }
+}

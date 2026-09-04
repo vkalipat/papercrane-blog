@@ -1,0 +1,371 @@
+@font-face {
+  font-family: "Ronzino";
+  src: url("/fonts/ronzino/Ronzino-Regular.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Ronzino";
+  src: url("/fonts/ronzino/Ronzino-Medium.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Ronzino";
+  src: url("/fonts/ronzino/Ronzino-Bold.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+}
+
+.page {
+  --post-bg: oklch(0.13 0.009 155);
+  --post-text: oklch(0.925 0.008 105);
+  --post-soft: oklch(0.76 0.009 115);
+  --post-muted: oklch(0.61 0.01 145);
+  --post-line: oklch(0.31 0.012 155);
+  --post-accent: oklch(0.78 0.07 158);
+  --post-warn: oklch(0.73 0.075 70);
+  position: relative;
+  z-index: 1;
+  min-height: 100dvh;
+  background: var(--post-bg);
+  color: var(--post-text);
+  font-family: "Ronzino", sans-serif;
+}
+
+:global(body):has(.page) {
+  color-scheme: dark;
+  background: oklch(0.13 0.009 155);
+}
+
+:global(body):has(.page) > header {
+  border-color: oklch(0.26 0.012 155) !important;
+  background: color-mix(in oklch, oklch(0.13 0.009 155) 94%, transparent) !important;
+}
+
+:global(body):has(.page) > header a {
+  color: oklch(0.925 0.008 105) !important;
+}
+
+:global(body):has(.page) > header a span {
+  color: oklch(0.78 0.07 158) !important;
+}
+
+.article {
+  width: 100%;
+  padding: 0 1.5rem;
+}
+
+.prose {
+  width: min(100%, 44rem);
+  margin: 0 auto;
+  padding: clamp(4rem, 7vw, 6rem) 0 8rem;
+  color: var(--post-soft);
+  font-size: 1.12rem;
+  line-height: 1.76;
+}
+
+.prose p {
+  margin: 0;
+}
+
+.prose p + p {
+  margin-top: 1.55rem;
+}
+
+.sectionHeading {
+  margin: 4.75rem 0 1.45rem;
+  color: var(--post-text);
+  font-size: 1.05rem;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  line-height: 1.4;
+}
+
+.prose a {
+  color: inherit;
+  text-decoration-line: underline;
+  text-decoration-color: var(--post-accent);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.18em;
+}
+
+.prose a:hover {
+  color: var(--post-accent);
+}
+
+.prose a:focus-visible {
+  outline: 2px solid var(--post-accent);
+  outline-offset: 3px;
+}
+
+.postMeta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 1rem;
+  margin-bottom: 2.4rem;
+  color: var(--post-muted);
+  font-size: 0.78rem;
+  letter-spacing: 0.015em;
+  line-height: 1.5;
+}
+
+.postMeta span {
+  color: var(--post-soft);
+}
+
+.lead {
+  color: var(--post-text);
+  font-size: 1.34rem;
+  letter-spacing: -0.018em;
+  line-height: 1.62;
+}
+
+.prose p.transition {
+  margin-top: 4.5rem;
+}
+
+.equation {
+  margin: 2.25rem 0;
+  padding: 0.6rem 0;
+  overflow-x: auto;
+  color: var(--post-text);
+  font-family: "Ronzino", sans-serif;
+  font-weight: 500;
+  font-size: clamp(0.82rem, 2.3vw, 1rem);
+  line-height: 1.6;
+  white-space: nowrap;
+}
+
+.equation sub {
+  font-size: 0.72em;
+}
+
+.figure {
+  width: min(58rem, calc(100vw - 3rem));
+  margin: 4.75rem 0;
+  margin-left: 50%;
+  transform: translateX(-50%);
+  color: var(--post-text);
+}
+
+.figureCaption {
+  padding: 0 0 0.9rem;
+  color: var(--post-muted);
+  font-size: 0.86rem;
+  line-height: 1.5;
+}
+
+.chartScroll {
+  width: 100%;
+  overflow-x: auto;
+  background: transparent;
+  overscroll-behavior-inline: contain;
+  scrollbar-color: var(--post-line) transparent;
+  scrollbar-width: thin;
+}
+
+.chartScroll:focus-visible {
+  outline: 2px solid var(--post-accent);
+  outline-offset: 4px;
+}
+
+.chartSvg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.chartWide {
+  min-width: 44rem;
+}
+
+.chartMedium {
+  min-width: 36rem;
+}
+
+.axisBaseline,
+.axisTick {
+  stroke: var(--post-line);
+  stroke-width: 1;
+  vector-effect: non-scaling-stroke;
+}
+
+.zeroLine {
+  stroke: var(--post-line);
+  stroke-width: 1;
+  vector-effect: non-scaling-stroke;
+}
+
+.meanInterval,
+.meanIntervalCap {
+  stroke: var(--post-accent);
+  stroke-width: 1.5;
+  vector-effect: non-scaling-stroke;
+}
+
+.gateLine {
+  stroke: var(--post-warn);
+  stroke-width: 1;
+  opacity: 0.72;
+  vector-effect: non-scaling-stroke;
+}
+
+.dataStem {
+  stroke: var(--post-line);
+  stroke-width: 1;
+  vector-effect: non-scaling-stroke;
+}
+
+.negativeStem {
+  stroke: var(--post-warn);
+  stroke-width: 1;
+  vector-effect: non-scaling-stroke;
+}
+
+.axisText,
+.rowLabel,
+.valueText,
+.negativeText,
+.meanLabel,
+.gateLabel {
+  font-family: "Ronzino", sans-serif;
+  font-size: 11px;
+}
+
+.axisText {
+  fill: var(--post-muted);
+}
+
+.rowLabel {
+  fill: var(--post-muted);
+}
+
+.valueText {
+  fill: var(--post-soft);
+}
+
+.negativeText,
+.gateLabel {
+  fill: var(--post-warn);
+}
+
+.meanLabel {
+  fill: var(--post-accent);
+  font-size: 11px;
+}
+
+.intervalLine {
+  stroke: var(--post-soft);
+  stroke-width: 1.5;
+  vector-effect: non-scaling-stroke;
+}
+
+.dataPoint {
+  fill: var(--post-soft);
+}
+
+.negativePoint {
+  fill: var(--post-warn);
+}
+
+.meanPoint {
+  fill: var(--post-accent);
+}
+
+.conclusion {
+  margin-top: 5.5rem !important;
+  padding-top: 0;
+  color: var(--post-text);
+  font-size: 1.24rem;
+  letter-spacing: -0.012em;
+  line-height: 1.62;
+}
+
+.references {
+  margin-top: 4.75rem;
+  padding-top: 1.4rem;
+  border-top: 1px solid var(--post-line);
+}
+
+.references h2 {
+  margin: 0;
+  color: var(--post-text);
+  font-size: 1rem;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  line-height: 1.4;
+}
+
+.references ol {
+  display: grid;
+  gap: 1.6rem;
+  margin: 1.5rem 0 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: reference;
+}
+
+.references li {
+  position: relative;
+  padding-left: 1.8rem;
+  color: var(--post-muted);
+  font-size: 0.9rem;
+  line-height: 1.62;
+  counter-increment: reference;
+}
+
+.references li::before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: var(--post-soft);
+  content: counter(reference) ".";
+}
+
+.references cite,
+.references i {
+  color: var(--post-soft);
+  font-style: normal;
+}
+
+@media (max-width: 44rem) {
+  .article {
+    padding: 0 1rem;
+  }
+
+  .prose {
+    padding-top: 3.75rem;
+    padding-bottom: 5rem;
+    font-size: 1.03rem;
+    line-height: 1.72;
+  }
+
+  .lead {
+    font-size: 1.18rem;
+  }
+
+  .figure {
+    width: calc(100vw - 2rem);
+    margin-top: 4.5rem;
+    margin-bottom: 4.5rem;
+  }
+
+  .figureCaption {
+    font-size: 0.83rem;
+  }
+
+  .chartWide {
+    min-width: 44rem;
+  }
+
+  .chartMedium {
+    min-width: 36rem;
+  }
+
+}
